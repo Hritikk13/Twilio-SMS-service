@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magical Updates</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        /* Style to make the background image cover the entire page */
+        body {
+            background-image: url("{{ url_for('static', filename='image/harry_potter_castle.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Full viewport height */
+            color: white; /* Text color for visibility */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* Styling the container to make sure the content is centered and has some padding */
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0); /* Fully transparent background */
+            padding: 30px;
+            border-radius: 10px;
+            opacity: 1; /* Keep text visible */
+        }
+
+        /* Optional: Style for the button */
+        .btn-lg {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+        }
+
+        /* Flash message styling */
+        .alert {
+            color: white;
+        }
+
+        /* Text color to ensure visibility */
+        h1 {
+            color: rgba(255, 255, 255, 1); /* Fully opaque text */
+        }
+
+        /* Highlighted text style */
+        .highlighted-text {
+            font-size: 1.2rem; /* Larger font size */
+            font-weight: bold; /* Bold text */
+            color: white; /* White text color */
+            background-color: #007bff; /* Blue background like the button */
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        /* Optional: Style for the button */
+        .btn-lg {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">✨ Magical Updates ✨</h1>
+        
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <div class="mt-4">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+        
+        <!-- Form to Trigger Message -->
+        <form method="POST" action="/send">
+            <button type="submit" class="btn btn-primary btn-lg d-block mx-auto">Send Magical Update!</button>
+        </form>
+        
+        <!-- Highlighted Instructions -->
+        <b><p  ="mt-4  white">
+            Click the button to send a magical update combining Harry Potter insights, Sudbury's weather, and astronauts in space!
+        </p></b>
+    </div>
+</body>
+</html>
